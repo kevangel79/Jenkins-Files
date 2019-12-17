@@ -1,0 +1,2 @@
+docker-slaves
+github-branch-source:1.8
