@@ -1,10 +1,10 @@
 ---
 - hosts: agents
-  remote_user: root 
+  remote_user: root
   tasks:
     - name: yum upgrade all packages
       yum:
-        name: *
+        name: '*'
         state: latest
     - name: yum install java, git and net-tools
       yum:
@@ -13,6 +13,11 @@
           - git
           - net-tools
         state: latest
+    - name: create jenkins user
+      user:
+        name: jenkins
+        home: /home/jenkins
+        shell: '/bin/bash'
     - name: uninstall old versions
       yum:
         name:
@@ -31,6 +36,7 @@
           - yum-utils
           - device-mapper-persistent-data
           - lvm2
+        state: latest
         update_cache: true
     - name: add repository
       get_url:
@@ -42,4 +48,5 @@
           - docker-ce
           - docker-ce-cli
           - containerd.io
+        state: latest
         update_cache: true
