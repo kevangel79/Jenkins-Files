@@ -1,3 +1,10 @@
+[all]
+master
+agents
+
+[master]
+snf-11767.ok-kno.grnetcloud.net
+
 [agents]
-snf-10491.ok-kno.grnetcloud.net
-snf-10492.ok-kno.grnetcloud.net
+snf-11813.ok-kno.grnetcloud.net
+snf-11814.ok-kno.grnetcloud.net
