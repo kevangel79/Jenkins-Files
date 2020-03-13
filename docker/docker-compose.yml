@@ -1,9 +1,10 @@
 version: '3'
 services:
   jenkins:
-    image: jenkins
+    image: jenkins/jenkins
     volumes:
-      - jenkins-data:/var/jenkins_home
+      - jenkins_data:/var/jenkins_home
+      - /home/jenkins/.ssh:/var/jenkins_home/.ssh
     networks:
       jenkins_net:
         ipv4_address: 172.18.0.22
@@ -12,16 +13,19 @@ services:
     image: nginx:latest
     depends_on: 
       - jenkins
+    networks:
+      jenkins_net:
+        ipv4_address: 172.18.0.11
     ports:
       - '80:80'
       - '443:443'
     volumes:
       - ./certs:/var/certs
-      - ./jenkins.conf:/etc/nginx/conf.d/default.conf
+      - ./proxy_nginx.conf:/etc/nginx/conf.d/default.conf
     restart: unless-stopped
 
 volumes:
-  jenkins-data:
+  jenkins_data:
 networks:
   jenkins_net:
     ipam:
