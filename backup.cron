@@ -1,0 +1,3 @@
+# import cron with $crontab -u <user> [file]
+
+0 9 * * 1 /home/jenkins/backup/backup_jenkins.sh && /home/jenkins/backup/rSyncBackups.sh -u jenkins -r snf-11813.ok-kno.grnetcloud.net -k /home/jenkins/.ssh/id_rsa -f /home/jenkins/backup/thinBackups -t /home/backups >> /home/jenkins/backup/logs/backup_jenkins_$(date +%d-%m-%y).log
